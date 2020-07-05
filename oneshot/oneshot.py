@@ -228,7 +228,7 @@ for episode in range(g['NBEPISODES']):
 
     # Loss: -log(p(correct)), where p(x) is the proba computed for option x by the softmax (i.e. the z)
     errors = -np.log(np.choose(np.argmax(tgts, axis=0), zs))
-    errors[:g['LEARNPERIOD']].fill(0)       # We don't care about early episode, exploratory "learning" period.....  Not strictly needed, but makes things a bit better.
+    #errors[:g['LEARNPERIOD']].fill(0)        We don't care about early episode, exploratory "learning" period.....  Not strictly needed, but makes things a bit better.
     archerrs.append(errors)
     
     # Now we compute the gradient of the error wrt z at each timestep:
