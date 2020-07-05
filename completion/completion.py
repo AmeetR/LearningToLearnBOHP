@@ -222,7 +222,7 @@ for episode in range(g['NBEPISODES']):
     # Now we compute the gradient of the error wrt z at each timestep:
     #dedzsraw = zs.copy() - tgts.copy()             # Derivative of loss (-log(p(correct))) through softmax: the computed probabilities minus the target (0 or 1) probabilities (see http://cs231n.github.io/neural-networks-case-study/#grad )
     dedzsraw = 2*(zs.copy() - tgts.copy())             # Derivative of squared-error loss with linear z is almost identical, not coincidently!
-    dedzsraw[:, :g['LEARNPERIOD']].fill(0)
+    dedzsraw[:, :int(g['LEARNPERIOD'])].fill(0)
     #dedzsraw = dedzs * zsflat * (1 - zsflat)    # Gradient through logistic nonlinearity
     #dedzsraw = dedzs * (1 - zsflat * zsflat)   # Gradient through tanh nonlinearity
     #dedzsraw = dedzs.copy() # Gradient through linear output, for debugging
