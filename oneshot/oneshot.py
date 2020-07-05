@@ -3,7 +3,7 @@ import scipy
 from scipy import special
 from scipy.special import expit as logist
 import sys
-import cPickle as pickle
+import pickle
 
 # This is the code for the one-shot learning task. For each episode, we
 # generate two random patterns, and assign each of them a label (01 or 10). We
