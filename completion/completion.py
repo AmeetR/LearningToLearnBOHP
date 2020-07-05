@@ -215,8 +215,8 @@ for episode in range(g['NBEPISODES']):
     
     # Loss: sum of squared errors
     errors = np.sum((zs - tgts)**2, axis=0)
-    print(g['LEARNPERIOD'])
-    errors[:g['LEARNPERIOD']].fill(0)       # We don't care about early episode, exploratory "learning" period.....  Not strictly needed, but makes things a bit better.
+    
+    errors[:int(g['LEARNPERIOD'])].fill(0)       # We don't care about early episode, exploratory "learning" period.....  Not strictly needed, but makes things a bit better.
     archerrs.append(errors)
     
     # Now we compute the gradient of the error wrt z at each timestep:
@@ -291,7 +291,7 @@ for episode in range(g['NBEPISODES']):
             alpha[alpha<1e-6] = 1e-6
 
     # Log the total error for this episode
-    meanerror = np.mean(np.abs(errors[g['LEARNPERIOD']:]))
+    meanerror = np.mean(np.abs(errors[int(g['LEARNPERIOD']):]))
 
     # Every 10th episode, display a message and update the output file
     if episode % 10 == 0:
