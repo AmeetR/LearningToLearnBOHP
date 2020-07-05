@@ -3,8 +3,7 @@ import scipy
 from scipy import special
 from scipy.special import expit as logist
 import sys
-import cPickle as pickle
-
+import pickle
 # %run completion.py LEARNPERIOD 1 ETA .03 MAXDW .1 WPEN 1e-3  WPEN2 1e-4 ALPHATRACE  .5
 
 # This code implements the pattern completion task.
@@ -295,9 +294,9 @@ for episode in range(g['NBEPISODES']):
 
     # Every 10th episode, display a message and update the output file
     if episode % 10 == 0:
-        print "Session #", episode, " - mean abs. error per timestep (excluding learning period): ", meanerror
-        print "Sum abs wxy: ", np.sum(np.abs(wxy)), ", sum abs alpha: ", np.sum(np.abs(alpha))
-        print "Errors at each timestep (should be 0.0 for early learning period):", errors
+        print ("Session #", episode, " - mean abs. error per timestep (excluding learning period): ", meanerror)
+        print ("Sum abs wxy: ", np.sum(np.abs(wxy)), ", sum abs alpha: ", np.sum(np.abs(alpha)))
+        print ("Errors at each timestep (should be 0.0 for early learning period):", errors)
         np.savetxt("errs.txt", np.array(errs))
         with open('data.pkl', 'wb') as handle:
               pickle.dump((wxy, wyz, alpha, by, bz, hebb, errs, g), handle)
@@ -311,7 +310,7 @@ for episode in range(g['NBEPISODES']):
 
 # This checks the gradient on ys 
 if g['GRADIENTCHECKING']: 
-    print "Predicting change in y:"
+    print ("Predicting change in y:")
     #diff = np.arctanh(archy[2]) - np.arctanh(archy[0]) 
     diff = archy[2] - archy[0]
     #diff = np.array(archy[1]) - np.array(archy[0]) 
@@ -320,29 +319,29 @@ if g['GRADIENTCHECKING']:
     calcdiffa =  np.sum(rdydas*ALPHAINC[:, :, None]*2, axis=1)
     calcdiffw =  np.sum(rdydws*WINC[:, :, None]*2, axis=1)
     calcdifftot = calcdiffa + calcdiffw
-    print " Measured diff.:"
-    print diff
-    print "Calculated diff.:"
-    print calcdifftot
-    print "Relative Absolute Error:"
+    print (" Measured diff.:")
+    print (diff)
+    print ("Calculated diff.:")
+    print (calcdifftot)
+    print ("Relative Absolute Error:")
     zd = np.abs(diff - calcdifftot) / (diff + 1e-8)
-    print zd
-    print "(Mean/std: ", np.mean(zd), np.std(zd)
+    print (zd)
+    print ("(Mean/std: ", np.mean(zd), np.std(zd))
 
-    print "Predicting change in final error (-log(p(correct)) in softmax/z layer):"
+    print ("Predicting change in final error (-log(p(correct)) in softmax/z layer):")
     differr = archerrs[2] - archerrs[0]  
     diffz = archz[2] - archz[0]  
     diffy = archy[2] - archy[0] 
     predicteddifferrfromdiffy = np.sum(rdedys * diffy, axis=0)    
-    print " Measured diff. err:"
-    print differr.T
-    print "Calculated diff. from the diffy:"
-    print predicteddifferrfromdiffy
+    print (" Measured diff. err:")
+    print (differr.T)
+    print ("Calculated diff. from the diffy:")
+    print (predicteddifferrfromdiffy)
     #dedas = dedysraw.T[:, :, None] * rdydas
     #dedws = dedysraw.T[:, :, None] * rdydws
     calcdifferr_a = np.sum(np.sum(rdedas*ALPHAINC[:, :, None]*2, axis=1), axis=0)
     calcdifferr_w = np.sum(np.sum(rdedws*WINC[:, :, None]*2, axis=1), axis=0)
     calcdifferr_tot = calcdifferr_a + calcdifferr_w
-    print "Calculated diff from inputs:"
-    print calcdifferr_tot
+    print ("Calculated diff from inputs:")
+    print (calcdifferr_tot)
 
