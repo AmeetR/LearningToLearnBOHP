@@ -215,6 +215,7 @@ for episode in range(g['NBEPISODES']):
     
     # Loss: sum of squared errors
     errors = np.sum((zs - tgts)**2, axis=0)
+    print(g['LEARNPERIOD'])
     errors[:g['LEARNPERIOD']].fill(0)       # We don't care about early episode, exploratory "learning" period.....  Not strictly needed, but makes things a bit better.
     archerrs.append(errors)
     
