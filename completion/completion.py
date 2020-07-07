@@ -19,7 +19,7 @@ zsize=8
 
 
 g = {
-'GRADIENTCHECKING': 0,
+'GRADIENTCHECKING': 1,
 'LINEARY': 0,
 'NBITER': 2,            # Number of timesteps per episode. In this simple pattern completion task, there are only two timesteps: one for pattern presentation/learning, and one for pattern compleetion/testing.        
 'YSIZE': xsize,         # Number of neurons in the y layer (note: if 1, this is essentially equivalent to a single-layer network since the last layer is a single one-to-one connection)
