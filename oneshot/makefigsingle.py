@@ -34,7 +34,7 @@ for (num, droot) in enumerate(dirz):
         try:
             z = np.loadtxt(dfull+"/errs.txt")
         except IOError:
-            print "error loading "+dfull+"/errs.txt"
+            print ("error loading "+dfull+"/errs.txt")
             continue
         #z=z[::10]   # For clarity, we only show every 10th
         #z=z[:800, :]
@@ -66,14 +66,14 @@ for (num, droot) in enumerate(dirz):
     p2 = 2*int(tmean.size / 3)
     p3 = -1
 
-    print num, p1, ':', tmean[p1], p2, ':', tmean[p2], p3, ':', tmean[p3], droot
+    print (num, p1, ':', tmean[p1], p2, ':', tmean[p2], p3, ':', tmean[p3], droot)
     perfs.append([tmean[p1], tmean[p2], tmean[p3]])
     nbneurs.append([tmean[p1], tmean[p2], tmean[p3]])
     dirs.append(droot)
 
     nplot += 1
 
-print "Data read."
+print ("Data read.")
 
 perfs = np.array(perfs)
 p = perfs[:,1]
