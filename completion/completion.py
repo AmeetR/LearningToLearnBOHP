@@ -295,7 +295,7 @@ for episode in range(g['NBEPISODES']):
 
     # Every 10th episode, display a message and update the output file
     if episode % 10 == 0:
-        print(errors
+        print(errors)
         print ("Session #", episode, " - mean abs. error per timestep (excluding learning period): ", meanerror)
         print ("Sum abs wxy: ", np.sum(np.abs(wxy)), ", sum abs alpha: ", np.sum(np.abs(alpha)))
         print ("Errors at each timestep (should be 0.0 for early learning period):", errors)
